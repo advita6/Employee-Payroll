@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Employee - Employee Payroll System</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="header">
+    <div class="logo">
+      <span class="logo-icon">👤</span>
+      <div class="logo-text">
+        <span class="logo-title">EMPLOYEE</span>
+        <span class="logo-subtitle">PAYROLL</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <h2 class="form-title">Edit Employee</h2>
+    
+    <% if (errors && errors.length > 0) { %>
+      <div class="error-messages">
+        <% errors.forEach(error => { %>
+          <p class="error"><%= error %></p>
+        <% }); %>
+      </div>
+    <% } %>
+    
+    <form action="/edit/<%= employee.id %>" method="POST" class="employee-form">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input 
+          type="text" 
+          id="name" 
+          name="name" 
+          value="<%= employee.name || '' %>"
+          required
+        >
+      </div>
+      
+      <div class="form-group">
+        <label for="department">Department</label>
+        <input 
+          type="text" 
+          id="department" 
+          name="department" 
+          value="<%= employee.department || '' %>"
+          required
+        >
+      </div>
+      
+      <div class="form-group">
+        <label for="basicSalary">Salary</label>
+        <input 
+          type="number" 
+          id="basicSalary" 
+          name="basicSalary" 
+          step="0.01"
+          min="0.01"
+          value="<%= employee.basicSalary || '' %>"
+          required
+        >
+      </div>
+      
+      <div class="form-actions">
+        <button type="submit" class="btn btn-submit">Update Employee</button>
+        <a href="/" class="btn btn-cancel">Cancel</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
