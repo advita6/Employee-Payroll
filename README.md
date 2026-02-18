@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Employee Payroll System (EPS)
 
 A server-side web application to manage employee records and calculate monthly payroll using Node.js, Express, and EJS.
@@ -85,3 +86,6 @@ The application handles:
 - Invalid employee IDs
 - File read/write errors
 - Port conflicts on startup
+=======
+# Employee-Payroll
+>>>>>>> 95dc8fe15584f2e233c1202a8a5c735c7328b717
