@@ -4,14 +4,21 @@ A modern server-side web application to manage employee records and calculate mo
 
 ## 🌟 Features
 
+- **Admin Login System**: Secure authentication for admin users (username: admin, password: admin)
+- **Guest Mode**: View-only access for non-admin users
 - **Dashboard**: View all employees with automatic payroll calculations
-- **Add Employee**: Register new employees with name, department, and basic salary
+- **Add Employee**: Register new employees with comprehensive details
 - **Profile Pictures**: Upload custom profile pictures or select from preset avatars
+- **Custom Departments**: Choose from preset departments or enter custom ones
+- **Custom Salary**: Select from preset amounts or enter custom salary
+- **Gender & Start Date**: Track employee demographics and tenure
+- **Notes Field**: Add additional information for each employee
 - **Edit Employee**: Update existing employee information
 - **Delete Employee**: Remove employees from the system with confirmation
 - **Automatic Calculations**: Tax (12%) and Net Salary computed automatically
 - **Data Persistence**: All data saved to `employees.json` file
 - **Modern UI**: Clean, professional interface with responsive design
+- **Session Management**: Secure login sessions with express-session
 
 ## 📂 Project Structure
 
@@ -41,11 +48,20 @@ npm install
 
 3. **Run the application:**
 ```bash
-node server.js
+npm run dev
+# or
+npm start
 ```
 
 4. **Access the application:**
 Open your browser and navigate to **http://localhost:3000**
+
+5. **Login as Admin (optional):**
+- Click "Admin Login" button
+- Username: `admin`
+- Password: `admin`
+- As admin, you can add, edit, and delete employees
+- Without login, you can view employees in read-only mode
 
 ## 📸 Screenshots
 
@@ -60,8 +76,10 @@ Comprehensive form with profile picture upload, gender selection, department che
 - **Backend**: Node.js, Express.js
 - **Template Engine**: EJS
 - **File Upload**: Multer
+- **Session Management**: express-session
 - **Styling**: Custom CSS with modern design
 - **Data Storage**: JSON file-based storage
+- **Testing**: Jest, Supertest, Fast-check
 
 ## 📋 Requirements
 
