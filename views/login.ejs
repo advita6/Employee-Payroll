@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Employee Payroll System</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="header">
+    <div class="logo">
+      <span class="logo-icon">👤</span>
+      <div class="logo-text">
+        <span class="logo-title">EMPLOYEE</span>
+        <span class="logo-subtitle">PAYROLL</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="login-container">
+    <div class="login-box">
+      <h2 class="login-title">Admin Login</h2>
+      
+      <% if (error) { %>
+        <div class="error-messages">
+          <p class="error"><%= error %></p>
+        </div>
+      <% } %>
+      
+      <form action="/login" method="POST" class="login-form">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input 
+            type="text" 
+            id="username" 
+            name="username" 
+            placeholder="Enter username"
+            required
+            autofocus
+          >
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            placeholder="Enter password"
+            required
+          >
+        </div>
+        
+        <button type="submit" class="btn btn-login">Login</button>
+      </form>
+      
+      <div class="login-footer">
+        <a href="/" class="link-view">View as Guest</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

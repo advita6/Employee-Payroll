@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Payroll System - Dashboard</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="header">
+    <div class="logo">
+      <span class="logo-icon">👤</span>
+      <div class="logo-text">
+        <span class="logo-title">EMPLOYEE</span>
+        <span class="logo-subtitle">PAYROLL</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container <%= typeof isAdmin !== 'undefined' && isAdmin ? '' : 'guest-mode' %>">
+    <div class="page-header">
+      <h2>Employee Details</h2>
+      <div class="header-actions">
+        <button class="btn-search">🔍</button>
+        <!-- Debug: isAdmin = <%= typeof isAdmin !== 'undefined' ? isAdmin : 'undefined' %> -->
+        <% if (typeof isAdmin !== 'undefined' && isAdmin) { %>
+          <a href="/add" class="btn btn-add">+ Add User</a>
+          <a href="/logout" class="btn btn-logout">Logout</a>
+        <% } else { %>
+          <a href="/login" class="btn btn-add" style="display: inline-block !important;">Admin Login</a>
+        <% } %>
+      </div>
+    </div>
+    
+    <% if (error) { %>
+      <div class="error-messages">
+        <p class="error"><%= error %></p>
+      </div>
+    <% } %>
+
+    <% if (employees.length === 0) { %>
+      <table class="employee-table">
+        <thead>
+          <tr>
+            <th>NAME</th>
+            <th>GENDER</th>
+            <th>DEPARTMENT</th>
+            <th>SALARY</th>
+            <th>START DATE</th>
+            <th>ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="6" class="empty-message">No employees found. Add your first employee to get started.</td>
+          </tr>
+        </tbody>
+      </table>
+    <% } else { %>
+      <table class="employee-table">
+        <thead>
+          <tr>
+            <th>NAME</th>
+            <th>GENDER</th>
+            <th>DEPARTMENT</th>
+            <th>SALARY</th>
+            <th>START DATE</th>
+            <th>ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% employees.forEach((employee, index) => { 
+            const avatarColors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8', '#F7DC6F'];
+            const avatarColor = avatarColors[index % avatarColors.length];
+            const initial = employee.name.charAt(0).toUpperCase();
+            const profileImage = employee.profileImage || `https://i.pravatar.cc/150?img=${(index % 70) + 1}`;
+            const gender = employee.gender || 'Male';
+            const startDate = employee.startDate || '29 Oct 2019';
+          %>
+            <tr>
+              <td>
+                <div class="employee-name">
+                  <% if (profileImage.startsWith('http')) { %>
+                    <img src="<%= profileImage %>" alt="<%= employee.name %>" class="avatar">
+                  <% } else { %>
+                    <img src="<%= profileImage %>" alt="<%= employee.name %>" class="avatar">
+                  <% } %>
+                  <span><%= employee.name %></span>
+                </div>
+              </td>
+              <td><%= gender %></td>
+              <td>
+                <span class="badge badge-<%= employee.department.toLowerCase().replace(/\s+/g, '-') %>"><%= employee.department %></span>
+              </td>
+              <td>₹ <%= employee.basicSalary.toFixed(2) %></td>
+              <td><%= startDate %></td>
+              <td class="actions-cell">
+                <form action="/delete/<%= employee.id %>" method="POST" style="display: inline;">
+                  <button type="submit" class="icon-btn" onclick="return confirm('Are you sure you want to delete this employee?')" title="Delete">🗑️</button>
+                </form>
+                <button class="icon-btn" onclick="window.location.href='/edit/<%= employee.id %>'" title="Edit">✏️</button>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    <% } %>
+  </div>
+</body>
+</html>
